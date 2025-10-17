@@ -1,0 +1,22 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2 class="text-center mb-5 fw-bold text-white">Beats disponibles</h2>
+
+<div class="row g-4">
+  {% for beat in beats %}
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="card h-100 text-center">
+      <img src="{{ beat.imagen.url }}" class="card-img-top" alt="{{ beat.titulo }}">
+      <div class="card-body">
+        <h5 class="card-title text-uppercase fw-bold text-white">{{ beat.titulo }}</h5>
+        <p class="card-text text-white">{{ beat.categoria.nombre }} | {{ beat.bpm }} BPM</p>
+        <p class="fw-bold text-white">${{ beat.precio }}</p>
+        <a href="{% url 'detalle' beat.pk %}" class="btn btn-custom w-100">Ver beat</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p class="text-center text-white">Aún no hay beats disponibles.</p>
+  {% endfor %}
+</div>
+{% endblock %}
